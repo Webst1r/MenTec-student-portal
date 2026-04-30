@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="10" fill="#1a2a5e"/>
+  <g fill="#ffffff">
+    <rect x="10" y="14" width="4"  height="36">
+      <animate attributeName="height" values="36;18;36" dur="1.4s" repeatCount="indefinite"/>
+      <animate attributeName="y"      values="14;23;14" dur="1.4s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="18" y="14" width="3"  height="36">
+      <animate attributeName="height" values="36;28;36" dur="1.4s" begin="0.15s" repeatCount="indefinite"/>
+      <animate attributeName="y"      values="14;18;14" dur="1.4s" begin="0.15s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="25" y="14" width="5"  height="36">
+      <animate attributeName="height" values="36;14;36" dur="1.4s" begin="0.30s" repeatCount="indefinite"/>
+      <animate attributeName="y"      values="14;25;14" dur="1.4s" begin="0.30s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="34" y="14" width="3"  height="36">
+      <animate attributeName="height" values="36;30;36" dur="1.4s" begin="0.45s" repeatCount="indefinite"/>
+      <animate attributeName="y"      values="14;17;14" dur="1.4s" begin="0.45s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="41" y="14" width="4"  height="36">
+      <animate attributeName="height" values="36;20;36" dur="1.4s" begin="0.60s" repeatCount="indefinite"/>
+      <animate attributeName="y"      values="14;22;14" dur="1.4s" begin="0.60s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="49" y="14" width="5"  height="36">
+      <animate attributeName="height" values="36;26;36" dur="1.4s" begin="0.75s" repeatCount="indefinite"/>
+      <animate attributeName="y"      values="14;19;14" dur="1.4s" begin="0.75s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+</svg>
