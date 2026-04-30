@@ -1,0 +1,16 @@
+{% extends "public/_layout.html" %}
+{% block title %}Sign up — Mentec{% endblock %}
+{% block content %}
+<div class="container" style="max-width:480px">
+  <h1>Create your account</h1>
+  <p class="muted">Join Mentec as a student. Lecturers and admins are added by an administrator.</p>
+  {% if error %}<div class="error">{{ error }}</div>{% endif %}
+  <form class="stacked" method="post" action="/signup">
+    <div><label>Full name</label><input name="full_name" required autofocus/></div>
+    <div><label>Email</label><input type="email" name="email" required/></div>
+    <div><label>Password (min. 8 characters)</label><input type="password" name="password" minlength="8" required/></div>
+    <button class="btn" type="submit">Create account</button>
+  </form>
+  <p class="muted" style="margin-top:14px">Already have an account? <a href="/login">Log in</a></p>
+</div>
+{% endblock %}
