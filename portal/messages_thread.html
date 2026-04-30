@@ -1,0 +1,18 @@
+{% extends "portal/_layout.html" %}
+{% block title %}{{ subject }} — Messages{% endblock %}
+{% block heading %}{{ subject }}{% endblock %}
+{% block content %}
+<p class="muted"><a href="/app/messages">← Back to inbox</a> · with {{ other.full_name if other else 'Unknown' }}</p>
+<div style="display:flex;flex-direction:column;max-width:720px">
+  {% for m in messages %}
+    <div class="bubble {% if m.sender_id == user.id %}me{% else %}them{% endif %}">
+      <div>{{ m.body }}</div>
+      <div class="meta">{{ m.sent_at.strftime('%b %d, %Y · %H:%M') }}</div>
+    </div>
+  {% endfor %}
+</div>
+<form method="post" action="/app/messages/thread/{{ thread_id }}/reply" class="stacked" style="margin-top:20px;max-width:720px">
+  <div><label>Reply</label><textarea name="body" rows="3" required></textarea></div>
+  <button class="btn" type="submit">Send reply</button>
+</form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "portal/_layout.html" %}
+{% block title %}Admin · Users — Mentec{% endblock %}
+{% block heading %}Manage Users{% endblock %}
+{% block content %}
+<table>
+  <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Joined</th><th>Change role</th></tr></thead>
+  <tbody>
+    {% for u in users %}
+    <tr>
+      <td>{{ u.full_name }}</td><td>{{ u.email }}</td>
+      <td><span class="tag role-{{ u.role.value }}">{{ u.role.value }}</span></td>
+      <td>{{ u.created_at.strftime('%b %d, %Y') }}</td>
+      <td>
+        <form method="post" action="/app/admin/users/{{ u.id }}/role" style="display:flex;gap:6px">
+          <select name="role">
+            {% for r in roles %}<option value="{{ r.value }}" {% if r == u.role %}selected{% endif %}>{{ r.value }}</option>{% endfor %}
+          </select>
+          <button class="btn small" type="submit">Save</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

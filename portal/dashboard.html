@@ -1,0 +1,22 @@
+{% extends "portal/_layout.html" %}
+{% block title %}Dashboard — Mentec{% endblock %}
+{% block heading %}Welcome back, {{ user.full_name.split(' ')[0] }} 👋{% endblock %}
+{% block content %}
+<div class="grid cols-3">
+  <div class="card"><h3>{{ courses|length }}</h3><p class="muted">{% if user.role.value == 'student' %}Enrolled courses{% elif user.role.value == 'lecturer' %}Courses teaching{% else %}Total courses{% endif %}</p><a href="/app/courses">View →</a></div>
+  <div class="card"><h3>{{ unread_count }}</h3><p class="muted">Unread messages</p><a href="/app/messages">Open inbox →</a></div>
+  <div class="card"><h3>{{ upcoming|length }}</h3><p class="muted">Upcoming events</p><a href="/app/calendar">View calendar →</a></div>
+</div>
+<h2 style="margin-top:30px">Latest announcements</h2>
+{% if announcements %}
+<div class="grid cols-2">
+  {% for a in announcements %}
+    <div class="card">
+      <h3 style="margin:0 0 6px">{{ a.title }}</h3>
+      <p class="muted" style="font-size:12px">{{ a.posted_at.strftime('%b %d, %Y') }}</p>
+      <p>{{ a.body }}</p>
+    </div>
+  {% endfor %}
+</div>
+{% else %}<p class="muted">No announcements yet.</p>{% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "portal/_layout.html" %}
+{% block title %}Calendar — Mentec{% endblock %}
+{% block heading %}My Calendar{% endblock %}
+{% block content %}
+<div class="card" style="margin-bottom:20px">
+  <h3>Add an event</h3>
+  <form method="post" action="/app/calendar/new" class="stacked" style="max-width:560px">
+    <div><label>Title</label><input name="title" required/></div>
+    <div><label>Description</label><input name="description"/></div>
+    <div style="display:flex;gap:10px">
+      <div style="flex:1"><label>Starts</label><input type="datetime-local" name="starts_at" required/></div>
+      <div style="flex:1"><label>Ends</label><input type="datetime-local" name="ends_at" required/></div>
+    </div>
+    <button class="btn" type="submit">Add event</button>
+  </form>
+</div>
+{% if events %}
+<table>
+  <thead><tr><th>Title</th><th>When</th><th>Description</th><th></th></tr></thead>
+  <tbody>
+    {% for e in events %}
+    <tr>
+      <td><strong>{{ e.title }}</strong></td>
+      <td>{{ e.starts_at.strftime('%b %d, %Y · %H:%M') }} → {{ e.ends_at.strftime('%H:%M') }}</td>
+      <td class="muted">{{ e.description }}</td>
+      <td>
+        <form method="post" action="/app/calendar/{{ e.id }}/delete" style="display:inline">
+          <button class="btn small danger" type="submit" onclick="return confirm('Delete?')">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}<p class="muted">No events yet.</p>{% endif %}
+{% endblock %}

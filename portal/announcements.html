@@ -1,0 +1,28 @@
+{% extends "portal/_layout.html" %}
+{% block title %}Announcements — Mentec{% endblock %}
+{% block heading %}Announcements{% endblock %}
+{% block content %}
+{% if user.role.value in ['lecturer','admin'] %}
+<div class="card" style="margin-bottom:20px">
+  <h3>Post an announcement</h3>
+  <form method="post" action="/app/announcements/new" class="stacked" style="max-width:560px">
+    <div><label>Title</label><input name="title" required/></div>
+    <div><label>Body</label><textarea name="body" rows="3" required></textarea></div>
+    <button class="btn" type="submit">Post</button>
+  </form>
+</div>
+{% endif %}
+{% if announcements %}
+<div class="grid cols-2">
+  {% for a in announcements %}
+  <div class="card">
+    <h3 style="margin:0 0 6px">{{ a.title }}</h3>
+    <p class="muted" style="font-size:12px">
+      {{ authors.get(a.author_id).full_name if authors.get(a.author_id) else 'Unknown' }} · {{ a.posted_at.strftime('%b %d, %Y · %H:%M') }}
+    </p>
+    <p>{{ a.body }}</p>
+  </div>
+  {% endfor %}
+</div>
+{% else %}<p class="muted">No announcements yet.</p>{% endif %}
+{% endblock %}

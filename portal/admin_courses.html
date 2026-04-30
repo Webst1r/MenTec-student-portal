@@ -1,0 +1,37 @@
+{% extends "portal/_layout.html" %}
+{% block title %}Admin · Courses — Mentec{% endblock %}
+{% block heading %}Manage Courses{% endblock %}
+{% block content %}
+<div class="card" style="margin-bottom:20px">
+  <h3>Create a course</h3>
+  <form method="post" action="/app/admin/courses/new" class="stacked" style="max-width:560px">
+    <div style="display:flex;gap:10px">
+      <div style="flex:1"><label>Code</label><input name="code" required/></div>
+      <div style="flex:2"><label>Title</label><input name="title" required/></div>
+    </div>
+    <div><label>Description</label><textarea name="description" rows="2"></textarea></div>
+    <div><label>Lecturer</label>
+      <select name="lecturer_id" required>
+        {% for l in lecturers %}<option value="{{ l.id }}">{{ l.full_name }}</option>{% endfor %}
+      </select>
+    </div>
+    <button class="btn" type="submit">Create course</button>
+  </form>
+</div>
+<table>
+  <thead><tr><th>Code</th><th>Title</th><th>Lecturer</th><th></th></tr></thead>
+  <tbody>
+    {% for c in courses %}
+    <tr>
+      <td>{{ c.code }}</td><td>{{ c.title }}</td>
+      <td>{% for l in lecturers %}{% if l.id == c.lecturer_id %}{{ l.full_name }}{% endif %}{% endfor %}</td>
+      <td>
+        <form method="post" action="/app/admin/courses/{{ c.id }}/delete" style="display:inline">
+          <button class="btn small danger" type="submit" onclick="return confirm('Delete course?')">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

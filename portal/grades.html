@@ -1,0 +1,26 @@
+{% extends "portal/_layout.html" %}
+{% block title %}Grades — Mentec{% endblock %}
+{% block heading %}Grades{% endblock %}
+{% block content %}
+{% if grades %}
+<table>
+  <thead>
+    <tr>
+      {% if user.role.value != 'student' %}<th>Student</th>{% endif %}
+      <th>Course</th><th>Assessment</th><th>Score</th><th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for g in grades %}
+    <tr>
+      {% if user.role.value != 'student' %}<td>{{ students.get(g.student_id).full_name if students.get(g.student_id) else '—' }}</td>{% endif %}
+      <td>{{ courses.get(g.course_id).code if courses.get(g.course_id) else '—' }} · {{ courses.get(g.course_id).title if courses.get(g.course_id) else '' }}</td>
+      <td>{{ g.assessment }}</td>
+      <td><strong>{{ g.score }}</strong> / {{ g.max_score }}</td>
+      <td>{{ g.graded_at.strftime('%b %d, %Y') }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}<p class="muted">No grades recorded yet.</p>{% endif %}
+{% endblock %}

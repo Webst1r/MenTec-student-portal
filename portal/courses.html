@@ -1,0 +1,26 @@
+{% extends "portal/_layout.html" %}
+{% block title %}Courses — Mentec{% endblock %}
+{% block heading %}Courses{% endblock %}
+{% block content %}
+{% if courses %}
+<div class="grid cols-2">
+  {% for c in courses %}
+    <div class="card">
+      <span class="tag">{{ c.code }}</span>
+      <h3 style="margin:8px 0 6px">{{ c.title }}</h3>
+      <p class="muted" style="font-size:13px">Lecturer: {{ lecturers.get(c.lecturer_id).full_name if lecturers.get(c.lecturer_id) else 'Unassigned' }}</p>
+      <p>{{ c.description }}</p>
+      {% if user.role.value == 'student' %}
+        {% if c.id in enrolled_ids %}
+          <span class="tag" style="background:#e0f5e8;color:#1f6b3a">Enrolled</span>
+        {% else %}
+          <form method="post" action="/app/courses/{{ c.id }}/enroll" style="display:inline">
+            <button class="btn small" type="submit">Enroll</button>
+          </form>
+        {% endif %}
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+{% else %}<p class="muted">No courses available yet.</p>{% endif %}
+{% endblock %}

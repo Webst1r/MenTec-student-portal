@@ -1,0 +1,15 @@
+{% extends "portal/_layout.html" %}
+{% block title %}Profile — Mentec{% endblock %}
+{% block heading %}My Profile{% endblock %}
+{% block content %}
+<div class="card" style="max-width:480px">
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>Role:</strong> <span class="tag role-{{ user.role.value }}">{{ user.role.value }}</span></p>
+  <p><strong>Member since:</strong> {{ user.created_at.strftime('%b %d, %Y') }}</p>
+  <hr style="border:none;border-top:1px solid var(--border);margin:16px 0"/>
+  <form method="post" action="/app/profile" class="stacked">
+    <div><label>Full name</label><input name="full_name" value="{{ user.full_name }}" required/></div>
+    <button class="btn" type="submit">Save changes</button>
+  </form>
+</div>
+{% endblock %}

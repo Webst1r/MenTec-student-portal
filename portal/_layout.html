@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="portal">
+  <aside class="sidebar">
+    <a class="brand" href="/app">
+      <img class="brand-mark" src="/static/favicon.svg" alt=""/>
+      <span>Mentec</span>
+    </a>
+    <nav>
+      <a href="/app" {% if request.url.path == '/app' or request.url.path == '/app/' %}class="active"{% endif %}>🏠 Dashboard</a>
+      <a href="/app/documents" {% if '/documents' in request.url.path %}class="active"{% endif %}>📁 Documents</a>
+      <a href="/app/messages" {% if '/messages' in request.url.path %}class="active"{% endif %}>💬 Messages</a>
+      <a href="/app/courses" {% if '/courses' in request.url.path and '/admin' not in request.url.path %}class="active"{% endif %}>🎓 Courses</a>
+      <a href="/app/grades" {% if '/grades' in request.url.path %}class="active"{% endif %}>📊 Grades</a>
+      <a href="/app/announcements" {% if '/announcements' in request.url.path %}class="active"{% endif %}>📢 Announcements</a>
+      <a href="/app/calendar" {% if '/calendar' in request.url.path %}class="active"{% endif %}>📅 Calendar</a>
+      <a href="/app/profile" {% if '/profile' in request.url.path %}class="active"{% endif %}>👤 Profile</a>
+      {% if user.role.value == 'admin' %}
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,.12);margin:10px 20px"/>
+        <a href="/app/admin/users" {% if '/admin/users' in request.url.path %}class="active"{% endif %}>⚙️ Admin · Users</a>
+        <a href="/app/admin/courses" {% if '/admin/courses' in request.url.path %}class="active"{% endif %}>⚙️ Admin · Courses</a>
+      {% endif %}
+    </nav>
+    <div class="role" style="margin-top:24px">
+      Signed in as<br/>
+      <strong style="color:#fff">{{ user.full_name }}</strong><br/>
+      <span class="tag role-{{ user.role.value }}">{{ user.role.value }}</span>
+    </div>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <h1>{% block heading %}{% endblock %}</h1>
+      <form class="logout-form" method="post" action="/logout">
+        <button type="submit" class="btn ghost small">Log out</button>
+      </form>
+    </div>
+    {% block content %}{% endblock %}
+  </main>
+</div>
+{% endblock %}

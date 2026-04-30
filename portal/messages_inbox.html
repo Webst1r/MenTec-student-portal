@@ -1,0 +1,34 @@
+{% extends "portal/_layout.html" %}
+{% block title %}Messages — Mentec{% endblock %}
+{% block heading %}Messages{% endblock %}
+{% block content %}
+<div class="card" style="margin-bottom:20px">
+  <h3>New message to a lecturer</h3>
+  <form method="post" action="/app/messages/new" class="stacked" style="max-width:560px">
+    <div><label>Lecturer</label>
+      <select name="recipient_id" required>
+        <option value="">— Choose lecturer —</option>
+        {% for l in lecturers %}<option value="{{ l.id }}">{{ l.full_name }} ({{ l.email }})</option>{% endfor %}
+      </select>
+    </div>
+    <div><label>Subject</label><input name="subject" required/></div>
+    <div><label>Message</label><textarea name="body" rows="4" required></textarea></div>
+    <button class="btn" type="submit">Send</button>
+  </form>
+</div>
+
+<h3>Conversations</h3>
+{% if threads %}
+<div class="thread-list">
+  {% for t in threads %}
+  <a class="thread" href="/app/messages/thread/{{ t.thread_id }}" style="text-decoration:none;color:inherit">
+    <div>
+      <strong>{{ t.subject }}</strong><br/>
+      <span class="muted" style="font-size:13px">with {{ t.other.full_name if t.other else 'Unknown' }} · {{ t.last.sent_at.strftime('%b %d, %H:%M') }}</span>
+    </div>
+    {% if t.unread %}<span class="badge">{{ t.unread }} new</span>{% endif %}
+  </a>
+  {% endfor %}
+</div>
+{% else %}<p class="muted">No conversations yet.</p>{% endif %}
+{% endblock %}
