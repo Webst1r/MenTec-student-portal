@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block body %}
+<header class="site-header">
+  <a class="brand" href="/">
+    <img class="brand-mark" src="/static/favicon.svg" alt=""/>
+    <span>Mentec Foundation</span>
+  </a>
+  <nav class="nav">
+    <a href="/solutions">Solutions</a>
+    <a href="/track-record">Track Record</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    {% if user %}
+      <a class="btn" href="/app">Open Portal</a>
+    {% else %}
+      <a href="/login">Log in</a>
+      <a class="btn" href="/signup">Sign up</a>
+    {% endif %}
+  </nav>
+</header>
+{% block content %}{% endblock %}
+<footer class="site-footer">
+  © {{ 2026 }} Mentec Foundation — Empowering students through learning.
+</footer>
+{% endblock %}

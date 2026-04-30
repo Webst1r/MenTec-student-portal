@@ -1,0 +1,26 @@
+{% extends "public/_layout.html" %}
+{% block title %}Contact — Mentec{% endblock %}
+{% block content %}
+<div class="container">
+  <h1>Contact us</h1>
+  <p class="muted">Have a question or want a demo for your institution? Get in touch.</p>
+  <div class="grid cols-2">
+    <div class="card">
+      <h3>Reach out</h3>
+      <p>📧 <strong>Email:</strong> hello@mentec.test</p>
+      <p>📞 <strong>Phone:</strong> +1 (555) 010-2030</p>
+      <p>🏢 <strong>Office:</strong> 100 Education Way, Suite 200</p>
+    </div>
+    <div class="card">
+      <h3>Send a message</h3>
+      <form class="stacked" onsubmit="event.preventDefault();this.querySelector('.error').style.display='block';">
+        <div><label>Your name</label><input required/></div>
+        <div><label>Your email</label><input type="email" required/></div>
+        <div><label>Message</label><textarea rows="4" required></textarea></div>
+        <button class="btn" type="submit">Send</button>
+        <div class="error" style="display:none">Demo form — connect your email backend to enable sending.</div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

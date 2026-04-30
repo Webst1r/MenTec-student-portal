@@ -1,0 +1,20 @@
+{% extends "public/_layout.html" %}
+{% block title %}Mentec Foundation — Student Portal{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Empowering students. Enabling lecturers.</h1>
+  <p>A modern student portal where you can store documents, message lecturers, track your courses and grades — all in one place.</p>
+  <a class="btn" href="/signup">Get started</a>
+  <a class="btn secondary" href="/login" style="margin-left:8px">Log in</a>
+</section>
+<div class="container">
+  <div class="grid cols-3">
+    <div class="card"><h3>📁 Documents</h3><p class="muted">Upload assignments, notes and resources. Securely stored, easy to find.</p></div>
+    <div class="card"><h3>💬 Messages</h3><p class="muted">Threaded conversations with your lecturers — get answers without the email overload.</p></div>
+    <div class="card"><h3>🎓 Courses & Grades</h3><p class="muted">Browse modules, enroll, and watch your grades update in real time.</p></div>
+    <div class="card"><h3>📢 Announcements</h3><p class="muted">Important updates from lecturers and the institution, in one feed.</p></div>
+    <div class="card"><h3>📅 Calendar</h3><p class="muted">Lectures, deadlines, and events — never miss what matters.</p></div>
+    <div class="card"><h3>🔐 Role-based access</h3><p class="muted">Students, lecturers and admins each get the tools they need.</p></div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "public/_layout.html" %}
+{% block title %}Solutions — Mentec{% endblock %}
+{% block content %}
+<div class="container">
+  <h1>Solutions</h1>
+  <p class="muted">Tools that fit how students and lecturers actually work.</p>
+  <div class="grid cols-2">
+    <div class="card"><h3>For Students</h3><ul><li>Personal document vault</li><li>Direct messaging with lecturers</li><li>Course enrollment & grade tracking</li><li>Personal calendar of deadlines</li></ul></div>
+    <div class="card"><h3>For Lecturers</h3><ul><li>Post announcements to all students</li><li>Reply to threaded messages</li><li>Manage course rosters</li><li>Record and share grades</li></ul></div>
+    <div class="card"><h3>For Administrators</h3><ul><li>Manage users and assign roles</li><li>Create and edit courses</li><li>Audit activity across the platform</li></ul></div>
+    <div class="card"><h3>Security & Privacy</h3><ul><li>Password hashing with bcrypt</li><li>Signed session cookies</li><li>Role-based access control</li><li>Owner-scoped document storage</li></ul></div>
+  </div>
+</div>
+{% endblock %}
